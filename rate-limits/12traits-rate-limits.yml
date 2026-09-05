@@ -1,0 +1,36 @@
+generated: '2026-09-05'
+method: searched
+source: https://docs.api.solsten.io/
+docs: https://docs.api.solsten.io/
+name: Solsten API rate limits
+summary: >-
+  Solsten publishes no rate limits. The full API reference was read end to end and contains no quota,
+  no throttling policy, no 429 status, and no RateLimit-* / X-RateLimit-* / Retry-After response
+  header. An honest zero: an integrator cannot tell how fast they may call this API, and an agent
+  gets no runtime signal to back off on.
+limit_count: 0
+limits: []
+headers: []
+exhaustion_status: null
+retry_after: null
+related_controls:
+- control: response cache
+  detail: >-
+    GET /v1/assessment/users is documented with a one-hour cache. That is a freshness bound, not a
+    rate limit, but it is the only throughput-adjacent statement in the reference.
+  evidence: https://docs.api.solsten.io/#assessment-users
+- control: page size cap
+  detail: >-
+    GET /v1/assessment/users returns at most 500 users per page, which bounds response size but not
+    call rate.
+  evidence: https://docs.api.solsten.io/#assessment-users
+evidence:
+- url: https://docs.api.solsten.io/
+  status: 200
+  note: >-
+    Full single-page Slate reference; sections are Introduction, Authentication, Assessment: Users,
+    Assessment: User Status, Assessment: Info, Delete User, Persona: User IDs, Microsoft Azure
+    PlayFab, Errors. No rate-limit section exists.
+- url: https://docs.api.solsten.io/#errors
+  status: 200
+  note: The documented status codes are 400, 401, 404 and 500. 429 is absent.

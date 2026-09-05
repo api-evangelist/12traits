@@ -1,0 +1,71 @@
+generated: '2026-09-05'
+method: searched
+source: https://docs.api.solsten.io/
+name: Solsten API lifecycle
+summary: >-
+  The API is versioned in the path at v1 and nothing else about its lifecycle is published. There is
+  no changelog, no release notes, no deprecation or sunset policy, no SLA, and no status page — the
+  conventional status.solsten.io hostname does not resolve. Solsten does publish enumerated lifecycle
+  states for the assessment resource itself (Launched, Closed, Deleted), which is the only lifecycle
+  vocabulary in the reference.
+versioning:
+  style: path
+  current_version: v1
+  format: https://api.solsten.io/v1/...
+  policy_documented: false
+  breaking_change_policy: null
+  evidence: https://docs.api.solsten.io/#authentication
+change_log:
+  present: false
+  url: null
+  evidence:
+  - url: https://solsten.io/changelog
+    status: 404
+  note: >-
+    The provider's own llms.txt indexes Products, Technology & Data, Solutions, Resources, Company
+    and Legal. No changelog or release-notes page is listed.
+deprecation_policy:
+  present: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  note: No deprecated operations are marked, and no retirement notice mechanism is documented.
+sla:
+  present: false
+  uptime_target: null
+status_page:
+  present: false
+  url: null
+  evidence:
+  - url: https://status.solsten.io/
+    status: 0
+    note: DNS does not resolve (NXDOMAIN).
+support_channels:
+- type: contact-form
+  url: https://solsten.io/contact
+  status: 200
+- type: help-center
+  url: https://help.solsten.io/en/
+  status: 0
+  note: >-
+    A Solsten help center is indexed by search engines at this hostname, but the host currently fails
+    the TLS handshake (SSLV3_ALERT_HANDSHAKE_FAILURE) from two independent clients, so it is not
+    reachable and is deliberately NOT wired as a Support pointer.
+resource_lifecycle:
+- resource: assessment
+  states:
+  - Launched
+  - Closed
+  - Deleted
+  detail: >-
+    GET /v1/assessment returns a `status` field. "Possible assessment statuses are: Launched, Closed,
+    Deleted."
+  evidence: https://docs.api.solsten.io/#assessment-info
+- resource: user data
+  states:
+  - present
+  - deleted
+  detail: >-
+    DELETE /v1/userData removes a user permanently; propagation is documented as taking "a few
+    minutes". No restore path — see conventions/12traits-conventions.yml reversibility.
+  evidence: https://docs.api.solsten.io/#delete-user

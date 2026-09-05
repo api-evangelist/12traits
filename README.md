@@ -64,5 +64,17 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Solsten is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://equityzen.com/company/12traits
+Solsten (originally 12traits; legal entity Tessera Data, LLC) is a psychological-AI company building
+audience intelligence for product, marketing and research teams. Its products are Traits, Navigator and
+Elaris. The public developer surface is a small REST API at `https://api.solsten.io/v1` documented at
+https://docs.api.solsten.io/ — assessment completion, per-user assessment status, segment/persona user
+lists, permanent user-data deletion, and a Microsoft Azure PlayFab webhook receiver — plus a
+cloud-object-storage bulk ingestion contract for behavioural events and KPIs.
+
+No OpenAPI, GraphQL, AsyncAPI, MCP server or A2A agent card is published. Solsten does publish an
+`llms.txt` for the company and for each of its two product sites.
+
+- Website: https://solsten.io/
+- API reference: https://docs.api.solsten.io/
+- GitHub: https://github.com/12traits
+- Harvest source: https://equityzen.com/company/12traits

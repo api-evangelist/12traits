@@ -1,0 +1,57 @@
+# Solsten
+
+> Solsten is a psychological-AI company that provides audience intelligence for product, marketing, and research teams. It combines validated psychographic measurement with behavioral data to model how real people think, decide, and engage. Its product suite includes Elaris (audience-aware content generation), Navigator (audience intelligence), and Traits (real customer understanding).
+
+Elaris and Navigator are documented in their own llms.txt files, at https://elaris.new/llms.txt and https://navigator.solsten.io/llms.txt.
+
+---
+
+## Products
+
+- [Elaris](https://elaris.new/): Solsten's generative AI platform for creating and testing audience-aware ad creative and messaging, powered by synthetic "digital twin" audiences built from proprietary, first-party psychological data.
+- [Traits](https://solsten.io/traits/): Solsten's core audience-intelligence product that assesses any company's or product's real customers and clusters psychographic profiles into science-backed personas.
+- [Navigator](https://navigator.solsten.io/): Audience intelligence platform that allows anyone to identify and deeply understand a demographic's, brand's, or product's current, prospective, and untapped audiences using psychological profiling from first-party data.
+
+## Technology & Data
+
+- [Technology overview](https://solsten.io/tech): How Solsten's psychographic measurement, behavioral signal, and AI modeling layer work together.
+- [Data & validation](https://solsten.io/data): Independent validation study of Solsten's psychographic layer: 497,161 people profiled across 29 psychometric trait dimensions, with measured test-retest reliability and predictive-accuracy gains over demographics-only models.
+- [State of the Player 2025](https://solsten.io/state-of-the-player): Annual report on psychological shifts among gaming audiences.
+
+## Solutions
+
+- [Solutions overview](https://solsten.io/solutions): Industry- and use-case-specific applications of the Solsten platform.
+- [Gaming](https://solsten.io/solutions/gaming): Audience intelligence for game developers and publishers.
+- [Health](https://solsten.io/solutions/health): Audience intelligence for health and wellness companies.
+- [Web3](https://solsten.io/solutions/web3): Audience intelligence for web3 companies.
+
+## Resources
+
+- [Resources](https://solsten.io/blog): Blog articles, case studies, and media interviews on psychographics, audience intelligence, and AI.
+
+## Company
+
+- [About](https://solsten.io/about): Company background, mission, and team.
+- [Careers](https://solsten.io/careers): Open roles and company culture.
+- [Contact](https://solsten.io/contact): Get in touch or request a demo.
+
+## Legal
+
+- [Privacy Policy](https://solsten.io/privacy-policy)
+- [Terms of Service](https://solsten.io/terms-of-service)
+- [Data Privacy](https://solsten.io/data-privacy)
+- [Acceptable Use Policy](https://solsten.io/acceptable-use-policy)
+
+## Solutions & Use Cases
+
+- [User Segmentation](https://solsten.io/solutions/user-segmentation): Solution page for audience segmentation use cases.
+- [On-Demand Consumer Insights](https://solsten.io/solutions/on-demand-consumer-insights): Solution page for consumer insights use cases.
+- [Creative Optimization](https://solsten.io/solutions/creative-optimization): Solution page for ad and creative optimization use cases.
+- [Games User Research](https://solsten.io/solutions/games-user-research): Solution page for games user research services.
+- [Validate Market Potential](https://solsten.io/solutions/validate-market-potential): Solution page for pre-launch market validation.
+- [Maximize Lifetime Value](https://solsten.io/solutions/maximize-player-ltv): Solution page for player LTV optimization.
+- [Discover Untapped Audiences](https://solsten.io/solutions/expand-your-audience): Solution page for audience expansion.
+- [Enterprise](https://solsten.io/solutions/enterprise): Solution page for enterprise organizations.
+- [Growth Companies](https://solsten.io/solutions/growth-companies): Solution page for growth-stage companies.
+- [Startup Companies](https://solsten.io/solutions/startup-companies): Solution page for startups.
+- [Across Industries](https://solsten.io/solutions/across-industries): Solution page for cross-industry use cases.

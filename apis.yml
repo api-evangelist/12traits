@@ -1,23 +1,151 @@
 aid: 12traits
 name: Solsten
-description: 'Solsten is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Solsten (originally 12traits) is a Berlin- and Minneapolis-based psychological-AI company that builds audience
+  intelligence for product, marketing and research teams, pairing validated psychographic measurement with behavioural
+  telemetry to model how real people think, decide and engage. Its product suite spans Traits (assessment-driven
+  psychographic personas for a company's real customers), Navigator (a library of 200,000+ pre-profiled audiences drawn
+  from 2M+ questionnaire respondents) and Elaris (audience-aware generative content). The public developer surface is a
+  small REST API at api.solsten.io covering assessment completion, per-user assessment status, segment/persona user
+  lists and GDPR-style user-data deletion, plus a documented Microsoft Azure PlayFab webhook and a cloud-object-storage
+  bulk ingestion contract for behavioural events and KPIs.
+image: https://solsten.io/api/images/?path=2023/08/Solsten_avatar.png
 url: https://raw.githubusercontent.com/api-evangelist/12traits/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-09-05'
 modified: '2026-09-05'
 tags:
 - Company
-apis: []
+- Audience Intelligence
+- Psychographics
+- Consumer Insights
+- Analytics
+- Artificial Intelligence
+- Gaming
+- Market Research
+- Personalization
+- Behavioral Data
+tags_raw:
+- company
+- audience-intelligence
+- psychographics
+- consumer-insights
+- analytics
+- artificial-intelligence
+- gaming
+- market-research
+- personalization
+- behavioral-data
+apis:
+- name: Solsten API
+  description: >-
+    REST API for the Solsten assessment and persona platform. Documented operations cover listing users who completed an
+    assessment (paged, 500 per page, one-hour cache), checking a single user's assessment status, reading assessment
+    metadata and completion statistics, permanently deleting a user's data on request, and fetching the user IDs that
+    belong to a segment/persona. A PlayFab webhook endpoint accepts inbound gameplay events. Authentication is a Bearer
+    API key issued per dashboard. No OpenAPI or other machine-readable contract is published.
+  humanURL: https://docs.api.solsten.io/
+  baseURL: https://api.solsten.io/v1
+  image: https://solsten.io/api/images/?path=2023/08/Solsten_avatar.png
+  tags:
+  - Audience Intelligence
+  - Psychographics
+  - Consumer Insights
+  - Analytics
+  - Gaming
+  - Behavioral Data
+  tags_raw:
+  - audience-intelligence
+  - psychographics
+  - consumer-insights
+  - analytics
+  - gaming
+  - behavioral-data
+  properties:
+  - type: Documentation
+    url: https://docs.api.solsten.io/
+  - type: APIReference
+    url: https://docs.api.solsten.io/
+  - type: Authentication
+    url: authentication/12traits-authentication.yml
+  - type: Conventions
+    url: conventions/12traits-conventions.yml
+  - type: ErrorCatalog
+    url: errors/12traits-error-codes.yml
+  - type: DataModel
+    url: data-model/12traits-data-model.yml
+  - type: RateLimits
+    url: rate-limits/12traits-rate-limits.yml
+  - type: Lifecycle
+    url: lifecycle/12traits-lifecycle.yml
+  - type: Webhooks
+    url: asyncapi/12traits-webhooks.yml
+  - type: X-MCPServerCandidate
+    url: mcp/12traits-mcp.yml
+  - type: Documentation
+    url: https://cdn.solsten.io/assets/solsten_kpis_and_events_integration.pdf
+common:
+- type: Website
+  url: https://solsten.io/
+- type: DeveloperPortal
+  url: https://docs.api.solsten.io/
+- type: Documentation
+  url: https://docs.api.solsten.io/
+- type: APIReference
+  url: https://docs.api.solsten.io/
+- type: Login
+  url: https://dashboard.solsten.io/
+- type: Support
+  url: https://solsten.io/contact
+- type: Blog
+  url: https://solsten.io/blog
+- type: GitHubOrganization
+  url: https://github.com/12traits
+- type: TermsOfService
+  url: https://solsten.io/terms-of-service
+- type: PrivacyPolicy
+  url: https://solsten.io/privacy-policy
+- type: LLMsTxt
+  url: llms/12traits-llms.txt
+- type: Authentication
+  url: authentication/12traits-authentication.yml
+- type: Conventions
+  url: conventions/12traits-conventions.yml
+- type: ErrorCatalog
+  url: errors/12traits-error-codes.yml
+- type: DataModel
+  url: data-model/12traits-data-model.yml
+- type: RateLimits
+  url: rate-limits/12traits-rate-limits.yml
+- type: Plans
+  url: plans/12traits-plans-pricing.yml
+- type: Lifecycle
+  url: lifecycle/12traits-lifecycle.yml
+- type: Webhooks
+  url: asyncapi/12traits-webhooks.yml
+- type: Conformance
+  url: conformance/12traits-conformance.yml
+- type: Compliance
+  url: conformance/12traits-conformance.yml
+- type: Packages
+  url: packages/12traits-packages.yml
+- type: DomainSecurity
+  url: security/12traits-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/12traits-vulnerability-disclosure.yml
+- type: Security
+  url: security/12traits-vulnerability-disclosure.yml
+- type: LLMsTxt
+  url: https://solsten.io/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
-common:
-- type: Website
-  url: https://equityzen.com/company/12traits
+x-enrichment:
+  date: '2026-09-05'
+  status: enriched
+  artifacts_added: 17
+  pass: local-v3

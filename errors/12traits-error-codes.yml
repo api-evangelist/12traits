@@ -1,0 +1,78 @@
+generated: '2026-09-05'
+method: searched
+source: https://docs.api.solsten.io/#errors
+docs: https://docs.api.solsten.io/#errors
+name: Solsten API error catalog
+summary: >-
+  Solsten publishes a conventional-HTTP-status error model with a single JSON error envelope. It is
+  not RFC 9457 problem+json — the envelope is a bespoke {code, message, errors} object returned as
+  application/json. Four status codes are documented by name; the docs describe the 2xx/4xx/5xx
+  bands generally.
+format: custom-json
+media_type: application/json
+rfc9457: false
+envelope:
+  fields:
+  - name: code
+    type: integer
+    description: The HTTP status code, repeated in the body.
+    example: 400
+  - name: message
+    type: string
+    description: Short human-readable summary of the failure.
+    example: bad request
+  - name: errors
+    type: object
+    description: >-
+      Optional map of field name to a per-field validation message. Present on validation failures;
+      the published example maps "price" to "price must have a positive float value".
+    example:
+      price: price must have a positive float value
+  example: |
+    {
+        "code": 400,
+        "message": "bad request",
+        "errors": {
+            "price": "price must have a positive float value"
+        }
+    }
+  evidence: https://docs.api.solsten.io/#errors
+bands:
+- range: 2xx
+  meaning: Success.
+- range: 4xx
+  meaning: An error that failed given the information provided.
+- range: 5xx
+  meaning: An error with Solsten servers. The docs state these are rare.
+problem_types:
+- status: 400
+  title: Bad Request
+  meaning: Bad Request - Please check the Reference
+  remediation: Re-read the operation in the API reference and correct the request shape or parameters.
+  evidence: https://docs.api.solsten.io/#errors
+- status: 401
+  title: Unauthorized
+  meaning: Unauthorized - API Key is not valid
+  remediation: >-
+    Send a valid per-dashboard key as `Authorization: Bearer {API_KEY}` (or as `api_key` on the
+    PlayFab webhook URL). Verify the key in the Solsten Dashboard.
+  evidence: https://docs.api.solsten.io/#errors
+  observed:
+    url: https://api.solsten.io/v1/openapi.json
+    body: '{"code":401,"message":"api key is not valid"}'
+    note: Observed live on an unauthenticated request; message differs slightly from the docs table wording.
+- status: 404
+  title: Not Found
+  meaning: Not Found - The specified resource not found
+  remediation: Check the path and any {SEGMENT_ID}, {PERSONA} or user identifier substitution.
+  evidence: https://docs.api.solsten.io/#errors
+- status: 500
+  title: Internal Server Error
+  meaning: Internal Server Error - We had a problem with our server. Try again later.
+  remediation: Retry with backoff. The docs describe 5xx as rare.
+  evidence: https://docs.api.solsten.io/#errors
+gaps:
+- No 429 / rate-limit-exhaustion status is documented anywhere in the reference.
+- No machine-readable enumeration of application-level error codes beyond the four HTTP statuses.
+- No `type` URI, so errors cannot be dereferenced or matched by a stable identifier.
+- The docs call the surface "the Solsten Ingestion API" in the errors section while the rest of the reference calls it the Solsten API.

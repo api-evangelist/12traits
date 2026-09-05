@@ -1,0 +1,65 @@
+# Navigator by Solsten
+
+> Navigator is Solsten's audience intelligence platform, providing psychographic profiles for 200,000+ audiences (spanning gaming, entertainment, demographics, and consumer categories) drawn from 2M+ questionnaire respondents. Each profile includes sample size, demographics, psychological trait scores, and marketing affinities, grounded in validated psychographic methodology.
+
+Navigator is a Solsten product. See https://solsten.io/llms.txt for the company overview, https://elaris.new/llms.txt for Elaris, Solsten's audience-aware content-generation product, and https://solsten.io/traits/ for Traits, Solsten's audience-understanding product for existing customers.
+
+---
+
+## Key Facts
+
+- 8+ years of R&D in psychological profiling
+- 2M+ psychological profiles collected
+- 140M+ gameplay data points analyzed
+- 200,000+ digital twin audiences
+- 16 patents
+- Minimum 10,000 questionnaire respondents per published audience profile
+- Covers gaming, entertainment, and consumer categories
+
+## What is Navigator
+
+Navigator helps game developers, marketers, and product teams deeply understand their target audiences. Each audience profile includes sample size, age and gender distribution, psychological trait scores, gaming preferences, media consumption habits, and actionable marketing affinities.
+
+## Key Pages
+
+- [Home](https://navigator.solsten.io/): Browse and filter all indexed audiences by category and experience type
+
+## Sample Indexed Audiences
+
+Navigator indexes 200,000+ audience profiles at `/audience/[slug]`. A representative sample across categories:
+
+- [Video Games](https://navigator.solsten.io/audience/video-games)
+- [TikTok](https://navigator.solsten.io/audience/apps-tiktok)
+- [Netflix](https://navigator.solsten.io/audience/movies-and-tv-shows-netflix)
+- [Fortnite](https://navigator.solsten.io/audience/fortnite)
+- [Spotify](https://navigator.solsten.io/audience/apps-spotify)
+- [Nike](https://navigator.solsten.io/audience/nike)
+- [Basketball](https://navigator.solsten.io/audience/basketball)
+- [Cooking](https://navigator.solsten.io/audience/cooking)
+- [Harry Potter](https://navigator.solsten.io/audience/harry-potter)
+- [Instagram](https://navigator.solsten.io/audience/apps-instagram)
+
+## Frequently Asked Questions
+
+### What's the difference between Navigator and Traits?
+Navigator assists marketers, founders, and consumer insights professionals in audience discovery and market opportunities by identifying audience overlaps and distinct psychological needs to attract, acquire, and engage new customers. [Traits](https://solsten.io/traits/), on the other hand, assists teams in deeply understanding the nuances of their existing customers to understand how to best acquire the most engaged customers and strategize product or service offerings that best align to the existing customers' motivations and values.
+
+### How is Solsten different from traditional audience research?
+Traditional audience research tools often focus on surveys, demographics, or descriptive analytics. This tells marketers and analysts what happened, but not why. Solsten combines psychographic insights, behavioral signals, and predictive intelligence to help teams understand deeper customer motivations.
+
+## Legal
+
+- [Privacy Policy](https://solsten.io/privacy-policy)
+- [Terms of Service](https://solsten.io/terms-of-service)
+- [Data Privacy](https://solsten.io/data-privacy)
+
+## Notes for AI Assistants
+
+- Each audience page at `/audience/[slug]` contains structured psychographic data for a specific consumer segment
+- Audiences are only published when the sample size meets a minimum threshold for statistical validity
+- Data is updated as new survey respondents are added to each audience panel
+- Navigator is intended for B2B use by product teams, marketers, and researchers
+
+## Related Products
+
+- [Traits](https://solsten.io/traits/): Solsten's audience-understanding product. Psychographic profiles and personas for a brand's existing customer base, complementing Navigator's discovery of new and prospective audiences.

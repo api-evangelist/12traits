@@ -1,0 +1,63 @@
+generated: '2026-09-05'
+method: searched
+source: https://docs.api.solsten.io/#authentication
+docs: https://docs.api.solsten.io/#authentication
+name: Solsten API authentication
+summary: >-
+  A single authentication model: a per-dashboard API Key presented as an HTTP Bearer token.
+  There is no OAuth, no OpenID Connect, no mTLS and no scope system. The API key is issued and
+  rotated from the Solsten Dashboard, and Solsten states that each dashboard has its own key,
+  which makes the key the tenant boundary as well as the credential.
+api: Solsten API
+base_url: https://api.solsten.io/v1
+schemes:
+- id: bearer_api_key
+  type: http
+  scheme: bearer
+  in: header
+  name: Authorization
+  format: 'Authorization: Bearer {API_KEY}'
+  description: >-
+    Per-dashboard API key. Quoting the reference: "The Solsten API uses API Keys to authenticate
+    requests. You can view and manage your API Keys in the Solsten Dashboard. Each dashboard has
+    its own API Key."
+  applies_to: all documented /v1 operations
+  evidence: https://docs.api.solsten.io/#authentication
+- id: query_api_key
+  type: apiKey
+  in: query
+  name: api_key
+  format: https://api.solsten.io/v1/playfab?api_key={SOLSTEN_API_KEY}
+  description: >-
+    The PlayFab webhook ingestion endpoint takes the same API key as a query-string parameter
+    rather than a header, because PlayFab's webhook configuration only allows a URL to be set.
+  applies_to: POST /v1/playfab
+  evidence: https://docs.api.solsten.io/#microsoft-azure-playfab
+  concerns:
+  - >-
+    A credential in a URL query string is logged by intermediaries and stored in webhook
+    configuration UIs. This is a documented provider design, not an inference.
+key_management:
+  issuance: Solsten Dashboard (https://dashboard.solsten.io/)
+  self_serve: unknown
+  scoped: false
+  rotation_documented: false
+  key_prefix_documented: false
+  per_tenant: true
+transport:
+  https_required: true
+  evidence_quote: >-
+    "All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests
+    without authentication will also fail."
+  evidence: https://docs.api.solsten.io/#authentication
+observed:
+- url: https://api.solsten.io/v1/openapi.json
+  status: 401
+  body: '{"code":401,"message":"api key is not valid"}'
+  note: >-
+    An unauthenticated request to a /v1 path returns a JSON 401 with the documented error envelope,
+    confirming the auth requirement is enforced at the edge and matching the published error shape.
+gaps:
+- No documented key rotation or expiry policy.
+- No scopes, roles or least-privilege model — one key grants the whole documented surface for a dashboard.
+- No OAuth or OIDC surface exists, so scopes/ is not applicable for this provider.

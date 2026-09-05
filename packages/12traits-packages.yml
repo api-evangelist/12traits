@@ -1,0 +1,91 @@
+generated: '2026-09-05'
+method: searched
+source: https://registry.npmjs.org/
+name: Solsten packages
+summary: >-
+  Solsten publishes no API client SDK in any language. The company does own an npm publisher account
+  ("12traits") with three first-party packages, but all three are internal front-end UI libraries for
+  the Solsten dashboard, not clients for the Solsten API — so no `SDKs` pointer is emitted. npm,
+  PyPI, RubyGems and crates.io were queried directly; PyPI, RubyGems and crates.io have no Solsten or
+  12traits package at all.
+official_sdk_count: 0
+package_count: 3
+packages:
+- name: ui-lib-12traits
+  registry: npm
+  url: https://www.npmjs.com/package/ui-lib-12traits
+  official: true
+  kind: internal-ui-library
+  api_client: false
+  version: 0.755.0
+  published: '2025-02-28'
+  license: UNLICENSED
+  description: Solsten UI Library
+  publisher: 12traits
+  note: >-
+    Published by the company's own npm account and licensed UNLICENSED, i.e. published to the public
+    registry but not licensed for public use. It is the dashboard component library, not an API client.
+- name: ui-lib-solsten
+  registry: npm
+  url: https://www.npmjs.com/package/ui-lib-solsten
+  official: true
+  kind: internal-ui-library
+  api_client: false
+  version: 0.3.0
+  published: '2023-07-12'
+  license: null
+  description: UI lib Solsten
+  publisher: 12traits
+  note: >-
+    Superseded by ui-lib-12traits; last release 2023-07-12. Carries no license field.
+- name: '@12traits/useoutsideclick'
+  registry: npm
+  url: https://www.npmjs.com/package/@12traits/useoutsideclick
+  official: true
+  kind: react-hook
+  api_client: false
+  version: 1.0.7
+  published: '2022-05-13'
+  license: ISC
+  repository: https://github.com/12traits/useOutsideClick
+  publisher: 12traits
+forks_republished:
+- name: react-onclickoutside-solsten
+  registry: npm
+  url: https://www.npmjs.com/package/react-onclickoutside-solsten
+  official: true
+  first_party_original: false
+  version: 6.12.4
+  published: '2022-02-07'
+  note: >-
+    A republished fork of the third-party react-onclickoutside library under the company's name.
+    Counted separately because the code is not Solsten's own work.
+registries_checked:
+- registry: npm
+  query: solsten / 12traits
+  hits: 4
+  status: 200
+- registry: PyPI
+  url: https://pypi.org/pypi/solsten/json
+  hits: 0
+  status: 404
+- registry: RubyGems
+  url: https://rubygems.org/api/v1/gems/solsten.json
+  hits: 0
+  status: 404
+- registry: crates.io
+  url: https://crates.io/api/v1/crates?q=solsten
+  hits: 0
+  status: 200
+- registry: docs
+  url: https://docs.api.solsten.io/
+  hits: 0
+  status: 200
+  note: The API reference offers curl examples only. No SDK, client library or code-sample tab in any language.
+gaps:
+- >-
+  No first-party client for a REST API whose entire published surface is six operations — a
+  self-service integrator writes their own HTTP calls from curl snippets.
+- >-
+  The most recently released first-party package (ui-lib-12traits, 2025-02-28) is a dashboard UI
+  library, so there is no SDK release cadence to compare against the API at all.

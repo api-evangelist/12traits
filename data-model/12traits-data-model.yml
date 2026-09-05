@@ -1,0 +1,154 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://docs.api.solsten.io/ (response examples) and
+  https://cdn.solsten.io/assets/solsten_kpis_and_events_integration.pdf (ingestion payload examples)
+name: Solsten data model
+summary: >-
+  Derived from the response and payload examples the provider publishes, not from a spec — there is
+  no OpenAPI or JSON Schema to read. The graph has one join key: a caller-supplied opaque `user_id`
+  that Solsten never mints. Everything else — assessment completion, segment/persona membership, and
+  the eight behavioural event streams — hangs off that identifier. Field types below are read from
+  the published examples; optionality is NOT stated anywhere by the provider and is therefore not
+  asserted here.
+derived_from:
+- https://docs.api.solsten.io/#assessment-users
+- https://docs.api.solsten.io/#assessment-user-status
+- https://docs.api.solsten.io/#assessment-info
+- https://docs.api.solsten.io/#persona-user-ids
+- https://cdn.solsten.io/assets/solsten_kpis_and_events_integration.pdf
+join_key:
+  field: user_id
+  aka:
+  - id
+  owner: the integrating customer
+  detail: >-
+    "Replace :userid with exactly the same identifier you used to send user to the assessment."
+    The same value keys the assessment API, the PlayFab webhook and every bulk ingestion folder.
+    Solsten's Data Privacy page constrains it: "only accepts fully anonymized player IDs".
+entities:
+- name: Assessment
+  source: GET /v1/assessment
+  fields:
+  - {name: status, type: string, enum: [Launched, Closed, Deleted]}
+  - {name: created_on, type: string, format: 'YYYY-MM-DD HH:MM:SS'}
+  - {name: modified_on, type: string, format: 'YYYY-MM-DD HH:MM:SS'}
+  - {name: completed_at, type: integer}
+  - {name: type, type: string, example: Solsten 360}
+  - {name: title, type: string}
+  - {name: internal_title, type: string}
+  - {name: statistics, type: object, fields: [Partial, Disqualified, Complete]}
+- name: AssessmentUser
+  source: GET /v1/assessment/users
+  fields:
+  - {name: id, type: string, note: the customer-supplied user identifier}
+  - {name: completed_at, type: string, format: 'YYYY-MM-DD HH:MM:SS TZ', example: '2021-02-25 03:51:11 EST'}
+  collection_envelope:
+    fields: [current_page, total_pages, users]
+- name: AssessmentUserStatus
+  source: GET /v1/assessment/user/status
+  fields:
+  - {name: completed, type: boolean}
+  - {name: completed_at, type: integer, format: unix-epoch-seconds}
+- name: Segment
+  source: GET /v1/segments/{SEGMENT_ID}/personas/{PERSONA}/user-ids
+  fields:
+  - {name: segment_id, type: string, note: 'found in the dashboard; the literal "default" selects the default segment'}
+- name: Persona
+  source: GET /v1/segments/{SEGMENT_ID}/personas/{PERSONA}/user-ids
+  fields:
+  - {name: persona, type: string, note: '1-based index; the literal "all" fetches every persona'}
+  - {name: ids, type: array of string}
+- name: UserAction
+  source: 'ingestion folder: actions/'
+  fields:
+  - {name: timestamp, type: string}
+  - {name: user_id, type: string}
+  - {name: action_id, type: string}
+  - {name: action_name, type: string, example: fight_win}
+  - {name: action_params, type: 'array of {key, value}'}
+- name: Login
+  source: 'ingestion folder: logins/'
+  fields:
+  - {name: timestamp, type: string}
+  - {name: user_id, type: string}
+  - {name: clan_id, type: string}
+  - {name: level, type: integer}
+  - {name: device, type: string}
+  - {name: country, type: string}
+  - {name: language, type: string}
+  - {name: platform, type: string}
+  - {name: register_date, type: string, format: 'YYYY-MM-DD'}
+  - {name: last_login_timestamp, type: string}
+- name: Purchase
+  source: 'ingestion folder: purchases/'
+  fields:
+  - {name: timestamp, type: string}
+  - {name: user_id, type: string}
+  - {name: item_id, type: string}
+  - {name: count, type: integer}
+  - {name: price, type: number}
+  - {name: platform, type: string, example: Steam}
+- name: VirtualPurchase
+  source: 'ingestion folder: virtual_purchases/'
+  fields:
+  - {name: timestamp, type: string}
+  - {name: user_id, type: string}
+  - {name: item_id, type: string}
+  - {name: count, type: integer}
+  - {name: virtual_price, type: number}
+  - {name: currency, type: string, example: gold}
+- name: LevelUp
+  source: 'ingestion folder: level_ups/'
+  fields:
+  - {name: timestamp, type: string}
+  - {name: user_id, type: string}
+  - {name: level, type: integer}
+- name: Item
+  source: 'ingestion folder: items/'
+  fields:
+  - {name: item_id, type: string}
+  - {name: price, type: number}
+  - {name: currency, type: string, example: USD}
+  - {name: name, type: string}
+  - {name: type, type: string, example: weapon}
+- name: SocialDynamic
+  source: 'ingestion folder: social_dynamics/'
+  fields:
+  - {name: timestamp, type: string}
+  - {name: user_id, type: string}
+  - {name: target_user_id, type: string}
+  - {name: interaction, type: string, example: added_as_friend}
+  - {name: interaction_params, type: array}
+- name: KPI
+  source: 'ingestion folder: kpis/'
+  fields:
+  - {name: timestamp, type: string}
+  - {name: user_id, type: string}
+  - {name: register_date, type: string}
+  - {name: churn_date, type: string}
+  - {name: kpi_id, type: string, example: transaction_count}
+  - {name: value, type: number}
+relationships:
+- {from: Assessment, to: AssessmentUser, kind: has_many, via: assessment scope of the API key}
+- {from: AssessmentUser, to: AssessmentUserStatus, kind: has_one, via: id}
+- {from: Segment, to: Persona, kind: has_many, via: segment_id}
+- {from: Persona, to: AssessmentUser, kind: has_many, via: ids}
+- {from: AssessmentUser, to: UserAction, kind: has_many, via: user_id}
+- {from: AssessmentUser, to: Login, kind: has_many, via: user_id}
+- {from: AssessmentUser, to: Purchase, kind: has_many, via: user_id}
+- {from: AssessmentUser, to: VirtualPurchase, kind: has_many, via: user_id}
+- {from: AssessmentUser, to: LevelUp, kind: has_many, via: user_id}
+- {from: AssessmentUser, to: SocialDynamic, kind: has_many, via: user_id}
+- {from: AssessmentUser, to: KPI, kind: has_many, via: user_id}
+- {from: Purchase, to: Item, kind: belongs_to, via: item_id}
+- {from: VirtualPurchase, to: Item, kind: belongs_to, via: item_id}
+- {from: SocialDynamic, to: AssessmentUser, kind: belongs_to, via: target_user_id}
+notes:
+- >-
+  Timestamp representation is inconsistent across the model: naive datetime strings in the ingestion
+  payloads and GET /v1/assessment, a timezone-abbreviated string in GET /v1/assessment/users, and a
+  Unix epoch integer in GET /v1/assessment/user/status.
+- >-
+  No id-prefix scheme, no ULID/UUID convention, and no field-level nullability is published, so a
+  consumer cannot validate a payload before sending it.

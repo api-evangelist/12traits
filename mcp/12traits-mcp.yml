@@ -1,0 +1,86 @@
+generated: '2026-09-05'
+method: derived
+source: https://docs.api.solsten.io/
+name: Solsten MCP candidate
+status: candidate
+summary: >-
+  Solsten ships NO MCP server. No hosted endpoint, no stdio package, no listing in any connector
+  directory, and no mention of MCP in the company's own llms.txt files for Solsten, Elaris or
+  Navigator. The tools below are a CANDIDATE surface derived from the six operations documented in
+  the API reference — they describe what an MCP server for this API could expose, not anything that
+  exists. Nothing here is callable, and the apis.yml pointer is deliberately typed
+  X-MCPServerCandidate rather than MCPServer so it cannot be read as a shipped agent surface.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: api-key
+  verified: derived
+probes:
+- url: https://elaris.new/mcp
+  status: 404
+- url: https://elaris.new/api/mcp
+  status: 404
+- url: https://navigator.solsten.io/mcp
+  status: 404
+- url: https://navigator.solsten.io/api/mcp
+  status: 404
+- url: https://api.solsten.io/.well-known/oauth-authorization-server
+  status: 404
+- url: https://api.solsten.io/.well-known/oauth-protected-resource
+  status: 404
+- url: https://solsten.io/llms.txt
+  status: 200
+  note: Provider-authored index of the whole public surface. No MCP server, connector or agent endpoint is listed.
+- url: https://elaris.new/llms.txt
+  status: 200
+  note: Elaris is the generative-AI product and the most likely place for an MCP server. None is listed.
+- url: https://navigator.solsten.io/llms.txt
+  status: 200
+candidate_tools:
+- name: list_assessment_users
+  description: List the users who have completed the assessment, paged 500 at a time.
+  rest: GET /v1/assessment/users
+  parameters:
+  - {name: page, in: query, type: integer, description: 1-based page number}
+  consequence: read
+- name: get_user_assessment_status
+  description: Check whether one user has completed the assessment, and when.
+  rest: GET /v1/assessment/user/status
+  parameters:
+  - {name: id, in: query, type: string, description: the customer-supplied user identifier}
+  consequence: read
+- name: get_assessment_info
+  description: Read assessment metadata and completion statistics (Partial / Disqualified / Complete).
+  rest: GET /v1/assessment
+  parameters: []
+  consequence: read
+- name: list_persona_user_ids
+  description: List the user IDs belonging to a segment's persona.
+  rest: GET /v1/segments/{SEGMENT_ID}/personas/{PERSONA}/user-ids
+  parameters:
+  - {name: segment_id, in: path, type: string, description: 'segment id from the dashboard, or "default"'}
+  - {name: persona, in: path, type: string, description: '1-based persona index, or "all"'}
+  consequence: read
+- name: delete_user_data
+  description: Permanently delete a user's data. IRREVERSIBLE — no restore path is documented.
+  rest: DELETE /v1/userData
+  parameters:
+  - {name: id, in: body, type: string}
+  consequence: destructive
+  escalation: human-approval-required
+- name: ingest_playfab_event
+  description: Deliver a PlayFab gameplay event to Solsten.
+  rest: POST /v1/playfab
+  parameters:
+  - {name: api_key, in: query, type: string}
+  consequence: write
+  note: >-
+    Intended for PlayFab's webhook feature to call, not for an agent. No payload schema is published.
+inputSchema_source: >-
+  none — parameters above are transcribed from the curl examples in the HTML reference. There is no
+  OpenAPI to inherit real JSON Schemas from, so no inputSchema is asserted.
+gaps:
+- No MCP server, so no tool crosswalk can be emitted (mcp/12traits-tool-crosswalk.yml is deliberately absent).
+- No OpenAPI, so a generated MCP server would have to be hand-written against prose.

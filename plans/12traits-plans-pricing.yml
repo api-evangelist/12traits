@@ -1,0 +1,32 @@
+generated: '2026-09-05'
+method: searched
+source: https://solsten.io/
+name: Solsten plans and pricing
+summary: >-
+  Solsten publishes no pricing. There is no /pricing page (404), no tier table on the marketing site,
+  and no plan or quota reference in the API docs. The commercial motion is a demo request through
+  https://solsten.io/contact. This is an honest zero, not an unchecked field: a buyer cannot learn
+  the cost of the platform or of API access without a sales conversation.
+plan_count: 0
+plans: []
+currency: null
+billing_model: contact-sales
+free_tier: false
+trial: unknown
+api_access_gating: >-
+  API keys are issued per dashboard from https://dashboard.solsten.io/, which implies an existing
+  customer account. Nothing states whether API access is included in all plans or priced separately.
+evidence:
+- url: https://solsten.io/pricing
+  status: 404
+- url: https://solsten.io/contact
+  status: 200
+  note: Demo/contact form — the published route to commercial terms.
+- url: https://solsten.io/llms.txt
+  status: 200
+  note: >-
+    The provider's own llms.txt indexes Products, Technology, Solutions, Resources, Company and
+    Legal sections. It lists no pricing page, confirming the absence is the site's real shape.
+- url: https://docs.api.solsten.io/
+  status: 200
+  note: API reference contains no pricing, quota or metering statement.

@@ -1,0 +1,78 @@
+generated: '2026-09-05'
+method: searched
+source: https://docs.api.solsten.io/#microsoft-azure-playfab
+name: Solsten event and webhook surface
+summary: >-
+  Solsten publishes an event surface, but it runs INBOUND only — Solsten receives events, it does not
+  emit them. There is one documented webhook receiver (a Microsoft Azure PlayFab webhook target) and
+  one bulk event-ingestion contract over customer-owned cloud object storage. Solsten publishes no
+  outbound webhooks, no subscription management, no event catalog for consumers, and no AsyncAPI
+  document. Recorded honestly so the direction is not mistaken for an outbound notification surface.
+asyncapi_document: null
+direction: inbound
+outbound_webhooks:
+  present: false
+  note: >-
+    Nothing in the reference lets a customer register a callback URL or subscribe to Solsten-emitted
+    events. An integrator polls GET /v1/assessment/user/status to learn that an assessment completed.
+inbound_webhooks:
+- id: playfab
+  name: Microsoft Azure PlayFab event webhook
+  method: POST
+  url: https://api.solsten.io/v1/playfab?api_key={SOLSTEN_API_KEY}
+  producer: Microsoft Azure PlayFab (the customer's PlayFab title)
+  consumer: Solsten
+  auth: api_key query-string parameter
+  payload_schema_published: false
+  payload_note: >-
+    Solsten documents the receiver URL and the PlayFab configuration steps but publishes no schema
+    for the events it accepts — the shape is whatever PlayFab's webhook feature emits, which is
+    documented by Microsoft, not by Solsten.
+  configuration_steps:
+  - Go to PlayFab Analytics
+  - Open "Webhooks" tab
+  - Click "New Webhook"
+  - Give it a name
+  - Set Endpoint URL
+  signature_verification: not applicable (Solsten is the receiver)
+  replay_protection: none documented
+  evidence: https://docs.api.solsten.io/#microsoft-azure-playfab
+  references:
+  - https://learn.microsoft.com/en-us/gaming/playfab/features/data/webhooks/
+bulk_ingestion:
+- id: cloud-object-storage
+  name: KPIs / Behavioural Data Integration
+  transport: cloud object storage pull (Solsten reads the customer's bucket)
+  stores:
+  - Google Cloud Storage
+  - Amazon Web Services S3
+  - Microsoft Azure Storage
+  formats:
+  - newline-delimited JSON (preferred)
+  - CSV
+  cadence: >-
+    Incremental. "New data files will be automatically identified and processed by Solsten... We
+    expect only new changes to the data to be shared (incremental load pattern) instead of pushing
+    full dataset repeatedly."
+  event_types:
+  - actions
+  - logins
+  - purchases
+  - virtual_purchases
+  - level_ups
+  - items
+  - social_dynamics
+  - kpis
+  join_key: user_id
+  validation: >-
+    "Solsten will attempt to connect to your cloud storage, test connectivity, and validate file
+    contents. We will send a notification in case of error: Unable to connect to the storage;
+    JSON/CSV format is not valid."
+  evidence: https://cdn.solsten.io/assets/solsten_kpis_and_events_integration.pdf
+  note: >-
+    Published as a PDF linked from the API reference sidebar as "KPIs/Events Integration". The event
+    payload shapes are recorded in data-model/12traits-data-model.yml.
+gaps:
+- No AsyncAPI document, and none of the event shapes is published in a machine-readable schema.
+- No outbound webhook or push notification of any kind — assessment completion must be polled.
+- The bulk ingestion contract is distributed as a PDF, which is the least machine-readable format the provider could have chosen for a set of JSON payloads.

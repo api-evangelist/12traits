@@ -1,0 +1,135 @@
+generated: '2026-09-05'
+method: searched
+source: https://docs.api.solsten.io/
+docs: https://docs.api.solsten.io/
+name: Solsten API conventions
+summary: >-
+  Cross-cutting runtime semantics for the Solsten REST API, read from the published reference. The
+  surface is small and read-mostly: five documented read operations, one destructive delete, and one
+  inbound webhook ingestion endpoint. There is no idempotency mechanism, no request-id tracing
+  header, no documented rate-limit signalling, and no reversal path for the one destructive
+  operation — all recorded here as honest absences rather than gaps we filled in.
+api: Solsten API
+base_url: https://api.solsten.io/v1
+auth:
+  style: bearer-api-key
+  header: 'Authorization: Bearer {API_KEY}'
+  see: authentication/12traits-authentication.yml
+versioning:
+  style: path
+  current: v1
+  format: https://api.solsten.io/v1/...
+  policy_documented: false
+  see: lifecycle/12traits-lifecycle.yml
+media_types:
+  request: application/json
+  response: application/json
+  note: >-
+    Content-Type: application/json is shown on the mutating examples (DELETE /v1/userData and the
+    persona user-ids read). Responses are JSON-encoded throughout.
+pagination:
+  style: page-number
+  params:
+  - name: page
+    in: query
+    description: 1-based page number. Documented on GET /v1/assessment/users.
+  response_fields:
+  - current_page
+  - total_pages
+  page_size: 500
+  page_size_configurable: false
+  cursor: false
+  evidence: https://docs.api.solsten.io/#assessment-users
+  note: >-
+    "Each page contains maximum 500 users." Page size is fixed; there is no per_page parameter and
+    no total record count, only total_pages.
+caching:
+  documented: true
+  detail: >-
+    GET /v1/assessment/users is documented as having a one-hour server-side cache, so a caller
+    cannot read its own writes on that endpoint within the window.
+  ttl_seconds: 3600
+  applies_to:
+  - GET /v1/assessment/users
+  headers_documented: false
+  evidence: https://docs.api.solsten.io/#assessment-users
+idempotency:
+  coverage: none
+  mechanism: null
+  header: null
+  scope: []
+  retention: null
+  detail: >-
+    No Idempotency-Key header, no client-supplied request identifier, and no replay-safety statement
+    anywhere in the reference. The two write surfaces are DELETE /v1/userData (naturally idempotent
+    by verb — a repeat delete of the same user id converges on the same state) and the PlayFab
+    webhook POST /v1/playfab (an event firehose with no deduplication contract published). An agent
+    retrying a PlayFab delivery has no documented way to avoid double-counting the event.
+  evidence: https://docs.api.solsten.io/
+reversibility:
+  status: none
+  applicable: true
+  detail: >-
+    The API has a write surface, so reversibility is applicable, but no reversal, undo, restore or
+    grace-period is documented for any of it. This matters most for the one irreversible operation.
+  write_surfaces:
+  - operation: DELETE /v1/userData
+    action: Permanently delete a user's assessment and behavioural data.
+    reversal_operation: null
+    window: null
+    docs_quote: >-
+      "Deletes user data permanently. This endpoint can be used if a given user requested data
+      deletion." ... "It takes a few minutes to remove the data from our system."
+    note: >-
+      The docs describe a propagation delay ("a few minutes"), NOT a cancellation window. Nothing in
+      the reference says a delete can be recalled during that period, so no window is asserted here.
+      An agent must treat this call as final.
+    evidence: https://docs.api.solsten.io/#delete-user
+  - operation: POST /v1/playfab
+    action: Ingest a PlayFab gameplay event.
+    reversal_operation: null
+    window: null
+    note: >-
+      Ingested events can only be removed by deleting the whole user via DELETE /v1/userData, which
+      is a broader action than reversing a single event.
+    evidence: https://docs.api.solsten.io/#microsoft-azure-playfab
+dry_run_mode:
+  supported: false
+  detail: No test mode, no sandbox key prefix, and no dry-run parameter is documented.
+request_tracing:
+  request_id_header: null
+  documented: false
+  detail: No X-Request-Id, correlation id, or trace header is documented on request or response.
+rate_limit_signalling:
+  documented: false
+  headers: []
+  exhaustion_status: null
+  see: rate-limits/12traits-rate-limits.yml
+error_envelope:
+  shape: '{ code, message, errors }'
+  rfc9457: false
+  see: errors/12traits-error-codes.yml
+field_conventions:
+  identifiers: >-
+    `user_id` / `id` is a caller-supplied identifier. The docs repeat that it must be "exactly the
+    same identifier you used to send user to the assessment" — Solsten does not mint user ids, the
+    integrator's own id is the join key across the assessment API, the PlayFab webhook and the bulk
+    ingestion contract.
+  timestamps: >-
+    Inconsistent across the surface. GET /v1/assessment/users returns `completed_at` as a string
+    with a US timezone abbreviation ("2021-02-25 03:51:11 EST"); GET /v1/assessment/user/status
+    returns `completed_at` as a Unix epoch integer (1585806949); GET /v1/assessment returns
+    `created_on`/`modified_on` as naive datetime strings. There is no ISO 8601 / RFC 3339 usage.
+  envelopes: >-
+    Also inconsistent. GET /v1/assessment wraps its payload in {result_ok, data}; the other reads
+    return their payload at the top level. Errors use a third shape, {code, message, errors}.
+  expansion: not supported
+  sparse_fields: not supported
+  metadata: not supported
+observations:
+- >-
+  There is no OpenAPI, Swagger, GraphQL SDL, AsyncAPI or Postman collection published for this API.
+  Every convention above was read out of prose and curl examples in a Slate-rendered HTML reference.
+- >-
+  The reference is server-rendered static HTML and fully machine-readable, which is why this profile
+  could be built at all — but a machine still has to parse English to integrate.

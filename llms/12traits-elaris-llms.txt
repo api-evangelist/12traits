@@ -1,0 +1,54 @@
+# Elaris
+
+> Elaris is Solsten's AI-powered creative platform for generating high-converting ad copy and ad creatives grounded in real audience psychology rather than internet-scraped patterns. Marketers use it to produce content that resonates with specific, psychologically-profiled audiences instead of generic AI output, in addition to market research to identify target market opportunities, compare audiences, and ideate on product or marketing strategies for high-return solutions.
+
+Elaris is a Solsten product. See https://solsten.io/llms.txt for the company overview and https://navigator.solsten.io/llms.txt for Solsten's audience-discovery product, Navigator (a separate, standalone product from the audience library feature described below).
+
+---
+
+## About Elaris
+
+Elaris is built on Solsten's proprietary psychological dataset — 2M+ unique psychological profiles making up 200,000+ "digital twin" audiences.
+
+Key facts:
+- Customers include Sony, Electronic Arts, DraftKings, Peloton, Supercell, and Dentsu
+- Reported results: 2–3x CTR improvements, up to +290% higher conversion rates vs. baseline AI content
+
+Elaris serves marketers, growth teams, founders, and creative agencies who need high-return strategies and ad creative that performs, not just content that generates.
+
+---
+
+## Product Features
+
+### Personalize Text
+Psychologically personalizes any text to resonate with a specific target audience. Paste a message, select an audience, and Elaris rewrites it based on that audience's psychological profile (values, motivations, personality, and communication style). Returns a resonance score before and after, with a breakdown of why the tuned version works.
+
+### Meme Generator
+Generates branded memes tailored to a specific audience and brand. Input a website URL; Elaris extracts the brand's voice, pairs it with audience psychology, and produces meme concepts that feel native to how that audience communicates.
+
+### Navigator (Audience Library)
+Browse and search Elaris's library (directly linked to Navigator) of 200,000+ pre-defined audiences, grouped by people's preferences in brands or products and demographics such as location or age. Selecting an audience feeds directly into Elaris's generated output, text personalization, and the meme generator, so every output is grounded in the same psychological profiles.
+
+### Brand Brain
+Create and manage brand books that capture personality, voice, values, purpose, and visual style. Products may also be included in the Brand Brain. Brand Brain ensures all Elaris-generated content stays on-brand and usable, with high-quality visualizations of uploaded product imagery.
+
+### Content Library
+A workspace for organizing and managing all generated ad images, videos, and text. Browse past outputs, organize by campaign or ad set, and revisit generated creative.
+
+---
+
+## Plans
+
+- **Starter**: $27/month, 40 credits/month, on-brand copy for 1 brand, essential psychological traits, 30 campaign-ready ad images. Free trial available.
+- **Pro**: Everything in Starter, plus unlimited brand brains (capturing brands and products), 160+ psychological traits, priority support, 400 credits/month
+- **Custom**: Tailored enterprise pricing, contact hello@elaris.new
+
+---
+
+## Pages
+
+- [Home](https://elaris.new/): Product overview and live interactive demo
+- [Pricing](https://elaris.new/#pricing): Plan comparison
+- [Blog](https://elaris.new/blog): Articles on AI marketing, psychology-driven creative, and audience strategy
+- [Contact](https://elaris.new/contact): Get in touch — hello@elaris.new
+- [Help Center](https://help.solsten.io/en/articles/12996944-getting-started-with-elaris): Getting-started guide for Elaris
