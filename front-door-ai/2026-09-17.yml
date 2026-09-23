@@ -1,0 +1,29 @@
+# Front Door AI Index — 12traits — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: 12traits
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: solsten.io
+  final_host: solsten.io
+  ownership: own
+  owner: 12traits
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 22
+  host_score: 22
+  density: 18.52
+  words: 1188
+  tiers:
+    agentic: 2
+    core: 19
+    model: 1
+  ambiguous: 11
+  top_terms:
+    AI: 19
+    intelligence: 9
+    AI agent: 2
+    agent: 2
+    ChatGPT: 1
