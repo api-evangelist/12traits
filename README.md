@@ -64,17 +64,116 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Solsten (originally 12traits; legal entity Tessera Data, LLC) is a psychological-AI company building
-audience intelligence for product, marketing and research teams. Its products are Traits, Navigator and
-Elaris. The public developer surface is a small REST API at `https://api.solsten.io/v1` documented at
-https://docs.api.solsten.io/ — assessment completion, per-user assessment status, segment/persona user
-lists, permanent user-data deletion, and a Microsoft Azure PlayFab webhook receiver — plus a
-cloud-object-storage bulk ingestion contract for behavioural events and KPIs.
+Solsten (originally 12traits) is a Berlin- and Minneapolis-based psychological-AI company that builds audience intelligence for product, marketing and research teams, pairing validated psychographic measurement with behavioural telemetry to model how real people think, decide and engage. Its product suite spans Traits (assessment-driven psychographic personas for a company's real customers), Navigator (a library of 200,000+ pre-profiled audiences drawn from 2M+ questionnaire respondents) and Elaris (audience-aware generative content). The public developer surface is a small REST API at api.solsten.io covering assessment completion, per-user assessment status, segment/persona user lists and GDPR-style user-data deletion, plus a documented Microsoft Azure PlayFab webhook and a cloud-object-storage bulk ingestion contract for behavioural events and KPIs.
 
-No OpenAPI, GraphQL, AsyncAPI, MCP server or A2A agent card is published. Solsten does publish an
-`llms.txt` for the company and for each of its two product sites.
+**Areas:** Company · Audience Intelligence · Psychographics · Consumer Insights · Analytics · Artificial Intelligence · Gaming · Market Research · Personalization · Behavioral Data
 
-- Website: https://solsten.io/
-- API reference: https://docs.api.solsten.io/
-- GitHub: https://github.com/12traits
-- Harvest source: https://equityzen.com/company/12traits
+## Solsten on APIs.io
+
+Everything profiled for Solsten is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/12traits/](https://apis.io/providers/12traits/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Solsten API](https://apis.io/apis/12traits/solsten-api/) — REST API for the Solsten assessment and persona platform. Documented operations cover listing users who completed an assessment (paged, 500 per page,…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [12Traits Webhooks](https://apis.io/asyncapis/12traits/12traits-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [Solsten MCP candidate](https://apis.io/servers/12traits/solsten-mcp-candidate/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [12Traits Authentication](https://apis.io/security/12traits/12traits-authentication/)
+- [12Traits Domain Security](https://apis.io/security/12traits/12traits-domain-security/)
+- [12Traits Vulnerability Disclosure](https://apis.io/security/12traits/12traits-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [12Traits Plans Pricing](https://apis.io/plans/12traits/12traits-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [12Traits Rate Limits](https://apis.io/rate-limits/12traits/12traits-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://solsten.io/)
+- [Documentation](https://docs.api.solsten.io/)
+- [API reference](https://docs.api.solsten.io/)
+- [Support](https://solsten.io/contact)
+- [Blog](https://solsten.io/blog)
+- [Terms of service](https://solsten.io/terms-of-service)
+- [Privacy policy](https://solsten.io/privacy-policy)
+- [GitHub](https://github.com/12traits)
+
+## API Evangelist rating
+
+**Kin Score 40.8** — developing · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 39.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 21.1 |
+| Developer ergonomics | 45.2 |
+| Access clarity | 35.5 |
+
+**Agent readiness 25.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 32.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/12traits/](https://apis.io/providers/12traits/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Solsten: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/12traits/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
