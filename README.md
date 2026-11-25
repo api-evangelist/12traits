@@ -96,21 +96,27 @@ Model Context Protocol servers that expose the API to agents.
 
 Authentication, trust centre, and vulnerability disclosure.
 
-- [12Traits Authentication](https://apis.io/security/12traits/12traits-authentication/)
-- [12Traits Domain Security](https://apis.io/security/12traits/12traits-domain-security/)
-- [12Traits Vulnerability Disclosure](https://apis.io/security/12traits/12traits-vulnerability-disclosure/)
+- [Solsten Authentication](https://apis.io/security/12traits/12traits-authentication/)
+- [Solsten Domain Security](https://apis.io/security/12traits/12traits-domain-security/)
+- [Solsten Vulnerability Disclosure](https://apis.io/security/12traits/12traits-vulnerability-disclosure/)
 
 #### Plans and pricing (1)
 
 Published plans, tiers and prices.
 
-- [12Traits Plans Pricing](https://apis.io/plans/12traits/12traits-plans-pricing/)
+- [Solsten Plans Pricing](https://apis.io/plans/12traits/12traits-plans-pricing/)
 
 #### Rate limits (1)
 
 Published request limits.
 
-- [12Traits Rate Limits](https://apis.io/rate-limits/12traits/12traits-rate-limits/)
+- [Solsten Rate Limits](https://apis.io/rate-limits/12traits/12traits-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Solsten Finops](https://apis.io/finops/12traits/12traits-finops/)
 
 ## Where to find this API
 
@@ -127,18 +133,18 @@ Links to the company's own pages. This repository publishes no copy of their spe
 
 ## API Evangelist rating
 
-**Kin Score 40.8** — developing · rubric 0.25.0 · scored 2026-10-23
+**Kin Score 40.5** — developing · rubric 0.28.1 · scored 2026-11-21
 
 | Facet | Score |
 |---|---|
 | Discoverability | 73.2 |
 | Contract quality | 39.0 |
 | Contract governance | 18.2 |
-| Operational transparency | 21.1 |
+| Operational transparency | 21.4 |
 | Developer ergonomics | 45.2 |
-| Access clarity | 35.5 |
+| Access clarity | 34.0 |
 
-**Agent readiness 25.2** — agent-aware
+**Agent readiness 24.6** — agent-aware
 
 | Agent-readiness dimension | Result |
 |---|---|
@@ -163,6 +169,10 @@ Links to the company's own pages. This repository publishes no copy of their spe
 | Agentic Commerce | — |
 | Pagination Ratio | na |
 | Operation Distinctiveness | na |
+| MCP Tool Quality | na |
+| Onboarding Descriptor | — |
+| Dns Aid Index | na |
+| Markdown Negotiation | na |
 
 **Regulatory alignment 32.7** — Horizontal (data, software, accessibility, platform)
 
